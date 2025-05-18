@@ -1,0 +1,30 @@
+{
+  "name": "Blog",
+  "version": "1.0.0",
+  "description": "Blog app using MERN stack",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "mongoose",
+    "nodejs",
+    "boilerplate",
+    "backend",
+    "mern"
+  ],
+  "author": "Muhammad Shahzeel",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
