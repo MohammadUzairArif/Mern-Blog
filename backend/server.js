@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors()); 
 app.use(express.json());
-app.use("/api/users", userRouter); // Use user router for /api/users
+app.use("/api/user", userRouter); // Use user router for /api/user
 
 
 app.use(errorHandler);
