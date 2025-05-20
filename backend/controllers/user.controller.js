@@ -6,4 +6,3 @@ res.json({ message: "Hello World from get" });
 }
 
 
-// aj gap lia ha kal krunga agay inshaAllah 
