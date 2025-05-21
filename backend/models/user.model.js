@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import { appError } from "../utils/appError.js";
+
 const UserSchema = new mongoose.Schema(
   {
     username: {
@@ -20,24 +22,32 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
- 
-// static signup method
+
+
 UserSchema.statics.signup = async function (username, email, password) {
   // validation
-  if (!username || !email || !password) {
-    throw Error("All fields must be filled");
+if (!username || !email || !password) {
+  throw appError(400, "All fields must be filled");
+  
+    
   }
+
   if (!validator.isEmail(email)) {
-    throw Error("Email is not valid");
+    throw appError(400, "Email not valid");
+    
+    
   }
+
   if (!validator.isStrongPassword(password)) {
-    throw Error("Password not strong enough");
+    throw appError(400, "Password not strong enough");
+    
   }
 
   // check if user already exists
   const exists = await this.findOne({ email });
   if (exists) {
-    throw Error("Email already in use");
+    throw appError(400, "Email already in use");
+    
   }
   // hash the password
   const salt = await bcrypt.genSalt(10);
@@ -45,7 +55,7 @@ UserSchema.statics.signup = async function (username, email, password) {
 
   // create user
   const user = new this({ username, email, password: hash });
-  await user.save(); // save user  database
+  await user.save(); // save user to database
   return user;
 }
 
