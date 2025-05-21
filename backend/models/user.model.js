@@ -45,7 +45,7 @@ UserSchema.statics.signup = async function (username, email, password) {
 
   // create user
   const user = new this({ username, email, password: hash });
-  await user.save(); // save user to database
+  await user.save(); // save user  database
   return user;
 }
 
