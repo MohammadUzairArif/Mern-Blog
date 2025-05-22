@@ -27,7 +27,7 @@ export default function SignupPage() {
       });
     }
   };
-
+//validation
   const validate = () => {
     const newErrors = {};
     
