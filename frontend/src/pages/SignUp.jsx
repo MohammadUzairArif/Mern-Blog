@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-
+import { signUp } from '../api/AuthApi';
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,12 +52,28 @@ export default function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try{
+      const response = await signUp(formData);
+      console.log('Signup successful:', response.data);
+      // Reset form and errors on successful signup
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+      });
+    }
+    catch (error) {
+      console.error('Signup failed:', error);
+    }
+    
+
     const newErrors = validate();
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
+
     
     // Submit form logic would go here
     console.log('Form submitted:', formData);
