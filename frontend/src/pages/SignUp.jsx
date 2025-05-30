@@ -237,4 +237,3 @@ export default function SignupPage() {
     </div>
   );
 }
-//new day new commit
